@@ -34,11 +34,13 @@ if not API_KEY:
 MODEL_NAME = "all-MiniLM-L6-v2"
 
 GEMINI_MODEL = "gemini-3.1-flash-lite"
+from pathlib import Path
 
-INDEX_FILE = "data/incidents.index"
-METADATA_FILE = "data/metadata.json"
-ORIGINAL_DATASET = "data/incidents.jsonl"
+BASE_DIR = Path(__file__).resolve().parent.parent
 
+INDEX_FILE = BASE_DIR / "data" / "incidents.index"
+METADATA_FILE = BASE_DIR / "data" / "metadata.json"
+ORIGINAL_DATASET = BASE_DIR / "data" / "incidents.jsonl"
 MAX_QUERY_CHARS = 12000
 
 

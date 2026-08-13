@@ -1,0 +1,10 @@
+sentence-transformers
+faiss-cpu
+numpy
+google-genai
+python-dotenv
+fastapi
+uvicorn
+python-multipart
+pypdf
+python-docx

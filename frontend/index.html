@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>DataGuard AI</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<nav class="navbar">
+
+    <div class="brand">
+
+        <div class="brand-icon">
+            ✦
+        </div>
+
+        <div>
+            <h1>DataGuard AI</h1>
+            <span>PRODUCTION INCIDENT INTELLIGENCE</span>
+        </div>
+
+    </div>
+
+
+    <div class="system-status">
+
+        <span class="status-dot"></span>
+
+        <span id="systemStatus">
+            System Ready
+        </span>
+
+    </div>
+
+</nav>
+
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="container">
+
+
+    <!-- =================================================
+         HERO
+    ================================================== -->
+
+    <section class="hero">
+
+        <div class="hero-badge">
+            AI + RAG INCIDENT ANALYSIS
+        </div>
+
+        <h2>
+            Understand your
+            <span>production incidents.</span>
+        </h2>
+
+        <p>
+            Upload an incident report and let DataGuard AI
+            identify the problem, find similar historical
+            incidents and guide your investigation.
+        </p>
+
+    </section>
+
+
+
+    <!-- =================================================
+         UPLOAD
+    ================================================== -->
+
+    <section class="upload-card">
+
+        <div class="section-heading">
+
+            <div>
+
+                <h3>
+                    Analyze an Incident
+                </h3>
+
+                <p>
+                    Upload a TXT, PDF or DOCX production report.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div
+            class="drop-zone"
+            id="dropZone"
+        >
+
+            <div class="upload-icon">
+                ↑
+            </div>
+
+            <h4>
+                Drop your incident report here
+            </h4>
+
+            <p>
+                or select a file from your computer
+            </p>
+
+            <button
+                class="secondary-button"
+                id="browseButton"
+                type="button"
+            >
+                Choose File
+            </button>
+
+            <input
+                type="file"
+                id="fileInput"
+                accept=".txt,.pdf,.docx"
+                hidden
+            >
+
+        </div>
+
+
+        <div
+            class="selected-file hidden"
+            id="selectedFile"
+        >
+            <span id="selectedFileName"></span>
+        </div>
+
+
+        <button
+            class="primary-button"
+            id="analyzeButton"
+            type="button"
+            disabled
+        >
+
+            <span>
+                ✦
+            </span>
+
+            Analyze Incident
+
+        </button>
+
+
+        <div
+            class="loading-state hidden"
+            id="loadingState"
+        >
+
+            <div class="loading-spinner"></div>
+
+            <div class="loading-content">
+
+                <strong id="loadingTitle">
+                    Analyzing incident...
+                </strong>
+
+                <span id="loadingText">
+                    Searching historical incidents and consulting AI.
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div
+            class="error-message hidden"
+            id="errorMessage"
+        ></div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         RESULTS
+    ================================================== -->
+
+    <section
+        class="results-section hidden"
+        id="resultsSection"
+    >
+
+
+        <!-- RESULTS HEADER -->
+
+        <div class="results-header">
+
+            <div>
+
+                <div class="result-label">
+                    INCIDENT INTELLIGENCE
+                </div>
+
+                <h3>
+                    Your Incident, Decoded.
+                </h3>
+
+                <p>
+                    AI reasoning combined with evidence
+                    from your historical incident knowledge base.
+                </p>
+
+            </div>
+
+
+            <div
+                class="analysis-time"
+                id="analysisTime"
+            >
+                Completed
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             STEP 01
+        ================================================== -->
+
+        <div class="step-title">
+
+            <div class="step-number">
+                01
+            </div>
+
+            <div>
+
+                <div class="result-label">
+                    AI DIAGNOSIS
+                </div>
+
+                <h3>
+                    Incident Analysis
+                </h3>
+
+                <p>
+                    What happened, why it happened,
+                    and what should be done next.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="analysis-card">
+
+            <div class="analysis-card-header">
+
+                <div class="ai-icon">
+                    ✦
+                </div>
+
+                <div>
+
+                    <h4>
+                        DataGuard AI
+                    </h4>
+
+                    <span id="analysisFileName">
+                        Incident Report
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="analysis-content"
+                id="analysisContent"
+            ></div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             STEP 02
+        ================================================== -->
+
+        <section class="similar-section">
+
+            <div class="step-title">
+
+                <div class="step-number purple">
+                    02
+                </div>
+
+                <div>
+
+                    <div class="result-label">
+                        RAG EVIDENCE
+                    </div>
+
+                    <h3>
+                        Historical Incidents
+                    </h3>
+
+                    <p>
+                        The three closest incidents found
+                        in our 160-incident knowledge base.
+                    </p>
+
+                </div>
+
+
+                <div class="knowledge-count">
+                    160 INCIDENTS
+                </div>
+
+            </div>
+
+
+            <div
+                class="incident-grid"
+                id="similarIncidents"
+            ></div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             STEP 03
+        ================================================== -->
+
+        <section class="chat-section">
+
+            <div class="step-title chat-step">
+
+                <div class="step-number cyan">
+                    03
+                </div>
+
+                <div>
+
+                    <div class="result-label">
+                        AI ASSISTANT
+                    </div>
+
+                    <h3>
+                        Continue the Investigation
+                    </h3>
+
+                    <p>
+                        Ask questions about the incident,
+                        root cause, resolution or prevention.
+                    </p>
+
+                </div>
+
+
+                <div class="chat-status">
+
+                    <span class="status-dot"></span>
+
+                    Gemini Connected
+
+                </div>
+
+            </div>
+
+
+
+            <!-- CHAT MESSAGES -->
+
+            <div
+                class="chat-messages"
+                id="chatMessages"
+            >
+
+                <div class="chat-message assistant">
+
+                    <div class="message-avatar">
+                        ✦
+                    </div>
+
+                    <div class="message-content">
+
+                        <strong>
+                            DataGuard AI
+                        </strong>
+
+                        <p>
+                            I've analyzed your incident.
+                            Ask me anything about the diagnosis,
+                            evidence, resolution or prevention.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- CHAT INPUT -->
+
+            <div class="chat-input-container">
+
+                <input
+                    type="text"
+                    id="chatInput"
+                    placeholder="Ask DataGuard AI about this incident..."
+                    autocomplete="off"
+                    disabled
+                >
+
+                <button
+                    id="chatSendButton"
+                    disabled
+                >
+                    Ask AI
+                    <span>→</span>
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             NEW ANALYSIS
+        ================================================== -->
+
+        <div class="new-analysis-container">
+
+            <button
+                class="secondary-button"
+                id="newAnalysisButton"
+                type="button"
+            >
+                ↻ Analyze Another Incident
+            </button>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="footer">
+
+    DataGuard AI · AI-powered production incident intelligence
+
+</footer>
+
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
